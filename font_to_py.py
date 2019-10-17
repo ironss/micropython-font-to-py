@@ -331,6 +331,9 @@ class Font(dict):
         for char in self.keys():
             glyph = self._glyph_for_character(char)
             char_width = int(max(glyph.width, glyph.advance_width))  # Actual width
+            if glyph.left < 0:
+                char_width -= glyph.left
+                glyph.left = 0
             width = self.width if self.width else char_width  # Space required if monospaced
             outbuffer = Bitmap(width, self.height)
 
