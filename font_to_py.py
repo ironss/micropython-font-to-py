@@ -598,8 +598,6 @@ if __name__ == "__main__":
                         default = '')
 
     args = parser.parse_args()
-    if not args.infile[0].isalpha():
-        quit('Font filenames must be valid Python variable names.')
 
     if not os.path.isfile(args.infile):
         quit("Font filename does not exist")
