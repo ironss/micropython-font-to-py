@@ -340,6 +340,22 @@ class Font(dict):
             outbuffer.bitblt(glyph.bitmap, row, glyph.left)
             self[char] = [outbuffer, width, char_width]
 
+            # Show character details
+            if args.verbose >= 1:
+                print("{c:d} {c:04X} «{ch}»".format(ch=char, c=ord(char)))
+
+            if args.verbose >= 2:
+                print(glyph.left, glyph.width, glyph.advance_width)
+                print(glyph.height, glyph.top)
+                print(self.width, self.height)
+                print()
+                glyph.bitmap.display()
+
+            if args.verbose >= 1:
+                print()
+                outbuffer.display()
+
+
     def stream_char(self, char, hmap, reverse):
         outbuffer, _, _ = self[char]
         if hmap:
@@ -600,6 +616,11 @@ if __name__ == "__main__":
                         type = str,
                         help = 'File containing charset e.g. cyrillic_subset.',
                         default = '')
+
+    parser.add_argument('-v', '--verbose',
+                        action = 'count',
+                        help = 'Increase output verbosity',
+                        default = 0)
 
     args = parser.parse_args()
 
