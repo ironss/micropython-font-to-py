@@ -330,17 +330,21 @@ class Font(dict):
     def _assign_values(self):
         for char in self.keys():
             glyph = self._glyph_for_character(char)
-            char_width = int(max(glyph.width, glyph.advance_width))  # Actual width
-            if glyph.left < 0:
-                char_width -= glyph.left
-                glyph.left = 0
+
+            if glyph.left >= 0:
+                char_width = int(max(glyph.advance_width, glyph.width + glyph.left))
+                left = glyph.left
+            else:
+                char_width = int(max(glyph.advance_width - glyph.left, glyph.width))
+                left = 0
+
             width = self.width if self.width else char_width  # Space required if monospaced
             outbuffer = Bitmap(width, self.height)
 
             # The vertical drawing position should place the glyph
             # on the baseline as intended.
             row = self.height - int(glyph.ascent) - self._max_descent
-            outbuffer.bitblt(glyph.bitmap, row, glyph.left)
+            outbuffer.bitblt(glyph.bitmap, row, left)
             self[char] = [outbuffer, width, char_width]
 
             # Show character details
