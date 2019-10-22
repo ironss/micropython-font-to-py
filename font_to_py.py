@@ -674,7 +674,7 @@ if __name__ == "__main__":
                 sys.exit(1)
         else:
             cset = args.charset
-        cs = {c for c in cset if c.isprintable()} - {args.errchar}  # dedupe and remove default char
+        cs = {c for c in cset if c.isprintable() or (0xE000 <= ord(c) <= 0xF8FF) } - {args.errchar}  # dedupe and remove default char
         cs = sorted(list(cs))
         cset = ''.join(cs)  # Back to string
         print('Writing Python font file.')
