@@ -1,0 +1,97 @@
+* Extended character set
+  * ASCII (32--126)
+  * Western ISO-8859-15 (128--255)
+  * All ISO-8859 code-pages
+  * degree
+  * micro
+  * ohm
+  * diameter
+  * ellipsis (low, centered)
+  * euro
+  * pound
+  * yen
+  * n-dash, m-dash
+  * segno
+  * musical symbols
+  * chess symbols
+  * playing card symbols
+  * weather symbols
+  * line-drawing
+  * battery level
+  * WLAN level
+  * Cell level
+  * Bluetooth level
+  * Network status
+  * Media transport symbols (play, play-pause, pause, FF, REW, record)
+  * Audio symbols (speaker volume, mic volume)
+
+  
+
+* Symbol fonts
+  * https://erikflowers.github.io/weather-icons/
+  * https://fontawesome.com/
+
+  * weathericons.io also has mappings from forecast.io, openweathermap, etc to their names
+
+
+  * day, night
+  * clear, cloudy, overcast, high-cloud, haze
+  * light wind, strong wind
+  * drizzle, showers, rain, heavy rain, sleet, hail, snow
+  * thunder, lightning
+  * tornado, flood, fire
+  * new-moon, 1st quarter, full moon, last quarter
+  * 
+
+
+
+ascii_charset = [
+    bytes((b,)).decode('ascii') for b in range(0, 128)
+]
+
+iso8859_1_charset = [
+    bytes((b,)).decode('iso8859-1') for b in range(0, 256) 
+]
+ 
+cp437_charset = [
+    bytes((b,)).decode('cp437') for b in range(0, 256) 
+]
+
+extended_charset = sorted(c for c in set(
+    ascii_charset +
+    iso8859_1_charset + 
+    cp437_charset + 
+    [
+        '\N{DEGREE SIGN}',
+        '\N{MICRO SIGN}',
+        '\N{OHM SIGN}',
+        '\N{DIAMETER SIGN}',
+        '\N{MULTIPLICATION SIGN}',
+        '\N{DIVISION SIGN}',
+        '\N{PLUS-MINUS SIGN}',
+        
+        '\N{EURO SIGN}',
+        '\N{POUND SIGN}',
+        '\N{YEN SIGN}',
+        
+        '\N{BULLET}',
+        '\N{REFERENCE MARK}',
+        '\N{SECTION SIGN}',
+        '\N{COPYRIGHT SIGN}',
+        '\N{REGISTERED SIGN}',
+        
+        '\N{FIGURE DASH}',
+        '\N{EM DASH}',
+        '\N{EN DASH}',
+        '\N{SWUNG DASH}',
+        '\N{HORIZONTAL ELLIPSIS}',
+        '\N{MIDLINE HORIZONTAL ELLIPSIS}',
+
+        '\N{SINGLE LEFT-POINTING ANGLE QUOTATION MARK}',
+        '\N{SINGLE RIGHT-POINTING ANGLE QUOTATION MARK}',
+        '\N{LEFT-POINTING DOUBLE ANGLE QUOTATION MARK}',
+        '\N{RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK}',
+    ]
+) if c.isprintable())
+
+
