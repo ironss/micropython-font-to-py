@@ -114,10 +114,9 @@ wi_symbols = {
    'day-haze'                : '\uf0b6',
 }
 
-
 wi_codes = wi_symbols.values()
 wi_code_string = ''.join(wi_codes)
-#print(wi_symbols)
-#print(wi_codes)
-print(wi_code_string)
+
+if __name__ == '__main__':
+    print(wi_code_string)
 
