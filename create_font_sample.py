@@ -87,6 +87,7 @@ text = texts[4]
 for fn in sorted(fonts):
     font = fonts[fn]
     
+    # Find all characters in the font
     text = ''.join(chr(font.ifb(font._mvsp[m:])) for m in range(0, len(font._mvsp), 4))
     
     im, txt = create_text_sample(text, font, (1, 1))
