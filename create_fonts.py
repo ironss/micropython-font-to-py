@@ -5,27 +5,33 @@ import subprocess
 
 font_specs = [
     # Sans
-    ( 'DejaVuSans_{size}.py'                , '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'                , [ 10, 12, 16, 20, 24, 32, 40 ], 'extended.charset' ),
-    ( 'DejaVuSans_Bold_{size}.py'           , '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'           , [ 10, 12, 16, 20, 24, 32, 40 ], 'extended.charset' ),
-    ( 'DejaVuSansCondensed_{size}.py'       , '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'extended.charset' ),
-    ( 'DejaVuSansCondensed_Bold_{size}.py'  , '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf'  , [ 10, 12, 16, 20, 24, 32, 40 ], 'extended.charset' ),
+    ( 'DejaVuSans_{size}.py'                , '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'                , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    ( 'DejaVuSans_Bold_{size}.py'           , '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'           , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    ( 'DejaVuSansCondensed_{size}.py'       , '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    ( 'DejaVuSansCondensed_Bold_{size}.py'  , '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf'  , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
 
     # Serif
-    ( 'DejaVuSerif_{size}.py'               , '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf'               , [ 10, 12, 16, 20, 24, 32, 40 ], 'extended.charset' ),
-    ( 'DejaVuSerif_Bold_{size}.py'          , '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'          , [ 10, 12, 16, 20, 24, 32, 40 ], 'extended.charset' ),
-    ( 'DejaVuSerifCondensed_{size}.py'      , '/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed.ttf'      , [ 10, 12, 16, 20, 24, 32, 40 ], 'extended.charset' ),
-    ( 'DejaVuSerifCondensed_Bold_{size}.py' , '/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Bold.ttf' , [ 10, 12, 16, 20, 24, 32, 40 ], 'extended.charset' ),
+    ( 'DejaVuSerif_{size}.py'               , '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf'               , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    ( 'DejaVuSerif_Bold_{size}.py'          , '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'          , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    ( 'DejaVuSerifCondensed_{size}.py'      , '/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed.ttf'      , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    ( 'DejaVuSerifCondensed_Bold_{size}.py' , '/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Bold.ttf' , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
 
     # Mono
-    ( 'DejaVuSansMono_{size}.py'            , '/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf'            , [ 10, 12, 16, 20, 24, 32, 40 ], 'extended.charset' ),
-    ( 'DejaVuSansMono_Bold_{size}.py'       , '/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'extended.charset' ),
+    ( 'DejaVuSansMono_{size}.py'            , '/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf'            , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    ( 'DejaVuSansMono_Bold_{size}.py'       , '/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
     
     # WeatherIcons
     ( 'WeatherIcons_{size}.py'              , '/home/ironsst/Downloads/weathericons-regular-webfont.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'weathericons.charset' ),
+
+    # Pixeden Icon Set Weather
+    ( 'PE_Icon_Set_Weather_{size}.py'        , '/home/ironsst/Downloads/pe-icon-set-weather.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'pe_icon_set_weather.charset' ),
 ]
 
 opath = 'fonts'
-os.mkdir(opath)
+try:
+    os.mkdir(opath)
+except FileExistsError:
+    pass
 
 for font_spec in font_specs:
     ffmt = font_spec[0]

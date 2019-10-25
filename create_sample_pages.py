@@ -1,3 +1,5 @@
+#! python3
+
 """
 Generate sample pages
 """
