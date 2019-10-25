@@ -122,7 +122,7 @@ def name(char):
             return k
     return None
 
-charset = _names.values()
+charset = sorted(_names.values())
 
 if __name__ == '__main__':
     text = ''.join(charset)
