@@ -7,6 +7,10 @@ pe_day = pe_icon_set_weather.lookup(['pe-is-w-sun-1', 'pe-is-w-partly-cloudy-1',
 import meteocons
 meteocons_day = meteocons.lookup(['meteo-sun', 'meteo-cloud-sun', 'meteo-clouds', 'meteo-cloud-rain-1', 'meteo-cloud-rain-2', 'meteo-cloud-snow-4', 'meteo-cloud-snow-1'])
 
+import iconvault_forecastfont
+iv_ff_parts = iconvault_forecastfont.lookup(['iv-ff-sun', 'iv-ff-cloud', 'iv-ff-windysnowcloud', 'iv-ff-windyraincloud', 'iv-ff-mist', 'iv-ff-rainy', 'iv-ff-windyrain'])
+
+
 
 pages = {
     "Screen_1" : {
@@ -47,6 +51,16 @@ pages = {
         'fields': [
             ((0,  20), meteocons_day, 'Meteocons_20'),
             ((0,  60), meteocons_day, 'Meteocons_32'),
+        ],
+        'scales': [
+            (1, 1), #(4, 4),
+        ],
+    },
+    "Iconvault ForecastFont" : {
+        'size': (320, 240),
+        'fields': [
+            ((0,  20), iv_ff_parts, 'Iconvault_ForecastFont_parts_20'),
+            ((0,  60), iv_ff_parts, 'Iconvault_ForecastFont_parts_32'),
         ],
         'scales': [
             (1, 1), #(4, 4),

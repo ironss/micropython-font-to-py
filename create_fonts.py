@@ -28,6 +28,9 @@ font_specs = [
 
     # Meteocons
     ( 'Meteocons_{size}.py'        , '/home/ironsst/Downloads/meteocons.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'meteocons.charset' ),
+
+    # Iconvault ForecastFont elements
+    ( 'Iconvault_ForecastFont_parts_{size}.py'        , '/home/ironsst/Downloads/iconvault_forecastfont.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'iconvault_forecastfont_parts.charset' ),
 ]
 
 opath = 'fonts'
