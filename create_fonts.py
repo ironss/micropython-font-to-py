@@ -25,6 +25,9 @@ font_specs = [
 
     # Pixeden Icon Set Weather
     ( 'PE_Icon_Set_Weather_{size}.py'        , '/home/ironsst/Downloads/pe-icon-set-weather.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'pe_icon_set_weather.charset' ),
+
+    # Meteocons
+    ( 'Meteocons_{size}.py'        , '/home/ironsst/Downloads/meteocons.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'meteocons.charset' ),
 ]
 
 opath = 'fonts'

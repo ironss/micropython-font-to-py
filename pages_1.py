@@ -4,6 +4,10 @@ wi_day = weathericons.lookup(['wi-day-sunny', 'wi-day-sunny-overcast', 'wi-day-c
 import pe_icon_set_weather
 pe_day = pe_icon_set_weather.lookup(['pe-is-w-sun-1', 'pe-is-w-partly-cloudy-1', 'pe-is-w-mostly-cloudy-1', 'pe-is-w-rain-1', 'pe-is-w-rain-and-snow', 'pe-is-w-hail-day-1', 'pe-is-w-snow-day-1'])
 
+import meteocons
+meteocons_day = meteocons.lookup(['meteo-sun', 'meteo-cloud-sun', 'meteo-clouds', 'meteo-cloud-rain-1', 'meteo-cloud-rain-2', 'meteo-cloud-snow-4', 'meteo-cloud-snow-1'])
+
+
 pages = {
     "Screen_1" : {
         'size': (320, 240),
@@ -33,6 +37,16 @@ pages = {
         'fields': [
             ((0,  20), pe_day, 'PE_Icon_Set_Weather_20'),
             ((0,  60), pe_day, 'PE_Icon_Set_Weather_32'),
+        ],
+        'scales': [
+            (1, 1), #(4, 4),
+        ],
+    },
+    "Meteocons" : {
+        'size': (320, 240),
+        'fields': [
+            ((0,  20), meteocons_day, 'Meteocons_20'),
+            ((0,  60), meteocons_day, 'Meteocons_32'),
         ],
         'scales': [
             (1, 1), #(4, 4),
