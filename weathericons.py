@@ -1,3 +1,5 @@
+#! python3
+
 _names = {
    'wi-day-cloudy-gusts'        : '\uf000',
    'wi-day-cloudy-windy'        : '\uf001',
@@ -108,9 +110,11 @@ _names = {
    'wi-day-haze'                : '\uf0b6',
 }
 
-def lookup(name):
-    code = _names[name]
-    return code
+def lookup(data):
+    if isinstance(data, str):
+        data = [ data ]
+    v = ''.join(_names[n] for n in data)
+    return v
 
 def name(char):
     for k, v in _names.items():
@@ -119,10 +123,8 @@ def name(char):
     return None
 
 charset = _names.values()
-text = ''.join(charset)
 
 if __name__ == '__main__':
-    print(lookup('wi-day-sleet'))
-    print(name('\uf0b3'))
+    text = ''.join(charset)
     print(text)
 
