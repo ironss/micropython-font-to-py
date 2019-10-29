@@ -52,6 +52,23 @@
 
   * weathericons.io also has mappings from forecast.io, openweathermap, etc to their names
 
+  * Work out how to combine Iconvault ForecastFont elements into complex icons.
+
+
+* clear-day
+* clear-night
+* partly-cloudy-day
+* partly-cloudy-night
+* cloudy
+* mist
+* drizzle
+* rain
+* sleet
+* hail
+* snow
+* thunder
+* all the above with wind
+  
 
   * day, night
   * clear, cloudy, overcast, high-cloud, haze
@@ -60,8 +77,12 @@
   * thunder, lightning
   * tornado, flood, fire
   * new-moon, 1st quarter, full moon, last quarter
-  * 
 
+
+
+
+Free-ish fonts
+==============
 
 Bitstream Vera
 DejaVu

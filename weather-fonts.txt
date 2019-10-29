@@ -1,0 +1,33 @@
+WeatherIcons
+https://erikflowers.github.io/weather-icons/
+Erik Flowers
+SIL OFL 1.1
+- weathericons-regular-webfont.ttf
+
+
+Meteocons
+http://www.alessioatzeni.com/meteocons/
+Alessio Atzeni
+'free and always will be'
+- meteocons.ttf
+- meteocons.otf
+- meteocos-webfont.ttf
+
+
+Forecastfont
+https://webdesignbestfirm.com/forecastfont.html
+Iconvault
+SIL
+- iconvault_forecastfont.ttf
+
+
+Weather Icon Font Set
+https://www.pixeden.com/icon-fonts/the-icons-font-set-weather
+Pixeden
+'Royalty-free for commercial and private use, modifiable'
+- pe-icon-set-weather.ttf
+
+
+Climacons
+- No TTF
+
