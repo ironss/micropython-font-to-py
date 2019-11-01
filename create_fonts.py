@@ -3,54 +3,73 @@
 import os
 import subprocess
 
+sizes = [ 
+    10,
+    12,
+    16,
+    20,
+    24,
+    32,
+    40,
+]
+
 font_specs = [
-    # Sans
-    ( 'DejaVuSans_{size}.py'                , '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'                , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-    ( 'DejaVuSans_Bold_{size}.py'           , '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'           , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-#    ( 'DejaVuSansCondensed_{size}.py'       , '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-#    ( 'DejaVuSansCondensed_Bold_{size}.py'  , '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf'  , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    # DejaVu Sans
+    ( 'DejaVuSans_{size}.py'                  , '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'                , sizes, 'charsets/combined.charset' ),
+    ( 'DejaVuSans_Bold_{size}.py'             , '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'           , sizes, 'charsets/combined.charset' ),
+#    ( 'DejaVuSansCondensed_{size}.py'         , '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf'       , sizes, 'charsets/combined.charset' ),
+#    ( 'DejaVuSansCondensed_Bold_{size}.py'    , '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf'  , sizes, 'charsets/combined.charset' ),
 
-    # Serif
-#    ( 'DejaVuSerif_{size}.py'               , '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf'               , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-#    ( 'DejaVuSerif_Bold_{size}.py'          , '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'          , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-#    ( 'DejaVuSerifCondensed_{size}.py'      , '/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed.ttf'      , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-#    ( 'DejaVuSerifCondensed_Bold_{size}.py' , '/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Bold.ttf' , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    # DejaVu Serif
+#    ( 'DejaVuSerif_{size}.py'                 , '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf'               , sizes, 'charsets/combined.charset' ),
+#    ( 'DejaVuSerif_Bold_{size}.py'            , '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'          , sizes, 'charsets/combined.charset' ),
+#    ( 'DejaVuSerifCondensed_{size}.py'        , '/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed.ttf'      , sizes, 'charsets/combined.charset' ),
+#    ( 'DejaVuSerifCondensed_Bold_{size}.py'   , '/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Bold.ttf' , sizes, 'charsets/combined.charset' ),
 
-    # Mono
-#    ( 'DejaVuSansMono_{size}.py'            , '/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf'            , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-#    ( 'DejaVuSansMono_Bold_{size}.py'       , '/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    # DejaVu Sans Mono
+#    ( 'DejaVuSansMono_{size}.py'              , '/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf'            , sizes, 'charsets/combined.charset' ),
+#    ( 'DejaVuSansMono_Bold_{size}.py'         , '/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf'       , sizes, 'charsets/combined.charset' ),
     
     # Freefont Sans
-#    ( 'FreeSans_{size}.py'                , '/usr/share/fonts/truetype/freefont/FreeSans.ttf'                , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-#    ( 'FreeSans_Bold_{size}.py'           , '/usr/share/fonts/truetype/freefont/FreeSans-Bold.ttf'           , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+#    ( 'FreeSans_{size}.py'                    , '/usr/share/fonts/truetype/freefont/FreeSans.ttf'                , sizes, 'charsets/combined.charset' ),
+#    ( 'FreeSansBold_{size}.py'               , '/usr/share/fonts/truetype/freefont/FreeSansBold.ttf'           , sizes, 'charsets/combined.charset' ),
 
     # IBM Plex Sans
-    ( 'IBMPlexSans_Regular_{size}.py'                , '/home/ironsst/Downloads/IBMPlexSans-Regular.ttf'                , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-    ( 'IBMPlexSans_Bold_{size}.py'           , '/home/ironsst/Downloads/IBMPlexSans-Bold.ttf'           , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+#    ( 'IBMPlexSans_Regular_{size}.py'         , 'ttf/IBMPlexSans-Regular.ttf'                , sizes, 'charsets/combined.charset' ),
+#    ( 'IBMPlexSans_Bold_{size}.py'            , 'ttf/IBMPlexSans-Bold.ttf'           , sizes, 'charsets/combined.charset' ),
+#    ( 'IBMPlexSansCondensed_Regular_{size}.py'         , 'ttf/IBMPlexSansCondensed-Regular.ttf'                , sizes, 'charsets/combined.charset' ),
+#    ( 'IBMPlexSansCondensed_Bold_{size}.py'            , 'ttf/IBMPlexSansCondensed-Bold.ttf'           , sizes, 'charsets/combined.charset' ),
 
     # Droid Sans Fallback
-    #( 'DroidSansFallback_{size}.py'                , '/usr/share/fonts-droid-fallback/truetype/DroidSansFallback.ttf'                , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+#    ( 'DroidSansFallback_{size}.py'           , '/usr/share/fonts-droid-fallback/truetype/DroidSansFallback.ttf'                , sizes, 'charsets/combined.charset' ),
 
 
     # Symbola
-    ( 'Symbola_{size}.py'                , '/home/ironsst/Downloads/symbola/Symbola.ttf'                , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-#    ( 'Symbola_hint_{size}.py'                , '/home/ironsst/Downloads/symbola/Symbola_hint.ttf'                , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    ( 'Symbola_{size}.py'                     , 'ttf/Symbola.ttf'                , sizes, 'charsets/combined.charset' ),
+#    ( 'Symbola_hint_{size}.py'                , 'ttf/Symbola_hint.ttf'                , sizes, 'charsets/combined.charset' ),
 
     # Tahoma
-    ( 'Tahoma_{size}.py'                , '/home/ironsst/Downloads/Tahoma.ttf'                , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
-    ( 'Tahoma_Bold_{size}.py'                , '/home/ironsst/Downloads/Tahoma Bold.ttf'                , [ 10, 12, 16, 20, 24, 32, 40 ], 'combined.charset' ),
+    ( 'Tahoma_{size}.py'                      , 'ttf/Tahoma.ttf'                , sizes, 'charsets/combined.charset' ),
+    ( 'Tahoma_Bold_{size}.py'                 , 'ttf/Tahoma Bold.ttf'                , sizes, 'charsets/combined.charset' ),
+
+    # Verdana
+#    ( 'Verdana_{size}.py'                     , 'ttf/Verdana.ttf'                , sizes, 'charsets/combined.charset' ),
+#    ( 'Verdana_Bold_{size}.py'                , 'ttf/Verdana Bold.ttf'                , sizes, 'charsets/combined.charset' ),
 
     # WeatherIcons
-    ( 'WeatherIcons_{size}.py'              , '/home/ironsst/Downloads/weathericons-regular-webfont.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'weathericons.charset' ),
+    ( 'WeatherIcons_{size}.py'                , 'ttf/weathericons-regular-webfont.ttf'       , sizes, 'charsets/weathericons.charset' ),
 
     # Pixeden Icon Set Weather
-    ( 'PE_Icon_Set_Weather_{size}.py'        , '/home/ironsst/Downloads/pe-icon-set-weather.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'pe_icon_set_weather.charset' ),
+    ( 'PE_Icon_Set_Weather_{size}.py'         , 'ttf/pe-icon-set-weather.ttf'       , sizes, 'charsets/pe_icon_set_weather.charset' ),
 
     # Meteocons
-    ( 'Meteocons_{size}.py'        , '/home/ironsst/Downloads/meteocons.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'meteocons.charset' ),
+#    ( 'Meteocons_{size}.py'                   , 'ttf/meteocons.ttf'       , sizes, 'charsets/meteocons.charset' ),
 
     # Iconvault ForecastFont elements
-    ( 'Iconvault_ForecastFont_parts_{size}.py'        , '/home/ironsst/Downloads/iconvault_forecastfont.ttf'       , [ 10, 12, 16, 20, 24, 32, 40 ], 'iconvault_forecastfont_parts.charset' ),
+#    ( 'Iconvault_ForecastFont_parts_{size}.py', 'ttf/iconvault_forecastfont.ttf'       , sizes, 'charsets/iconvault_forecastfont_parts.charset' ),
+
+    # Font Awesome (free) - weather iconss only
+    ( 'Font_Awesome_weather_{size}.py', 'ttf/fa-solid-900.ttf'       , sizes, 'charsets/font_awesome_weather.charset' ),
 ]
 
 opath = 'fonts'

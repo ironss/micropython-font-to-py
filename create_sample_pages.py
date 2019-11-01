@@ -36,10 +36,10 @@ def draw_text(draw, pos, text, font, scale):
 
 
 if __name__ == '__main__':
-    import pages_1
+    import pages_1 as pages
 
     fonts = {}
-    for title, page in pages_1.pages.items():
+    for title, page in pages.pages.items():
         for field in page['fields']:
             font = field[2]
             fonts[font] = True
@@ -52,7 +52,7 @@ if __name__ == '__main__':
         fmn.rsplit('.', 1)[1] : importlib.import_module(fmn) for fmn in font_modulenames
     }
 
-    for title, page in pages_1.pages.items():
+    for title, page in pages.pages.items():
         page_size = page['size']
 
         for scale in page['scales']:
@@ -67,5 +67,9 @@ if __name__ == '__main__':
                 draw_text(draw, pos, text, font, scale)
 
             filename = '{:s}-{:d}x{:d}-{:d}x{:d}'.format(title, page_size[0], page_size[1], scale[0], scale[1])
+            try:
+                os.mkdir('samples')
+            except FileExistsError:
+                 pass
             im.save('samples/' + filename + '.png')
 
