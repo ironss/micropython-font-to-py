@@ -274,9 +274,9 @@ class Font(dict):
         elif charset == '':
             self.charset = [chr(defchar)] + [chr(ordv) for ordv in self.crange]
         else:
-            cl = [ord(x) for x in chr(defchar) + charset]
+            cl = [ord(x) for x in chr(defchar) + charset if self._face.get_char_index(x) != 0 ]
             self.crange = range(min(cl), max(cl) + 1)  # Inclusive ordinal value range
-            cs = [chr(ordv) if chr(ordv) in charset else '' for ordv in self.crange]
+            cs = [chr(ordv) if chr(ordv) in charset and self._face.get_char_index(chr(ordv)) != 0 else '' for ordv in self.crange]
             # .charset has an item for all chars in range. '' if unsupported.
             # item 0 is the default char. Subsequent chars are in increasing ordinal value.
             self.charset = [chr(defchar)] + cs
