@@ -280,6 +280,7 @@ class Font(dict):
             # .charset has an item for all chars in range. '' if unsupported.
             # item 0 is the default char. Subsequent chars are in increasing ordinal value.
             self.charset = [chr(defchar)] + cs
+
         # Populate self with defined chars only
         self.update(dict.fromkeys([c for c in self.charset if c]))
         self.max_width = self.get_dimensions(size)
@@ -330,7 +331,6 @@ class Font(dict):
     def _assign_values(self):
         for char in self.keys():
             glyph = self._glyph_for_character(char)
-
             if glyph.left >= 0:
                 char_width = int(max(glyph.advance_width, glyph.width + glyph.left))
                 left = glyph.left
@@ -400,7 +400,11 @@ class Font(dict):
             append_data(data, self.charset[0])  # data[0] is the default char
             for char in sorted(self.keys()):
                 sparse += ord(char).to_bytes(2, byteorder='little')
-                sparse += (len(data)).to_bytes(2, byteorder='little')  # Start
+                try:
+                    sparse += (len(data)).to_bytes(2, byteorder='little')  # Start
+                except OverflowError as e:
+                    print(len(data))
+                    raise e
                 append_data(data, char)
         return data, index, sparse
 
@@ -644,7 +648,7 @@ if __name__ == "__main__":
         if args.smallest != 32 or args.largest != 126 or args.errchar != ord('?') or args.charset:
             quit(BINARY)
 
-        print('Writing binary font file.')
+        print('Writing binary font file %s...' % args.outfile)
         if not write_binary_font(args.outfile, args.infile, args.height,
                                  args.xmap, args.reverse):
             sys.exit(1)
@@ -677,11 +681,11 @@ if __name__ == "__main__":
         cs = {c for c in cset if c.isprintable() or (0xE000 <= ord(c) <= 0xF8FF) } - {args.errchar}  # dedupe and remove default char
         cs = sorted(list(cs))
         cset = ''.join(cs)  # Back to string
-        print('Writing Python font file.')
+        print('Writing Python font file %s...' % args.outfile)
         if not write_font(args.outfile, args.infile, args.height, args.fixed,
                           args.xmap, args.reverse, args.smallest, args.largest,
                           args.errchar, cset, args.iterate):
             sys.exit(1)
 
-    print(args.outfile, 'written successfully.')
+    print('Writing font file %s...done' % args.outfile)
 
