@@ -289,11 +289,19 @@ class Font(dict):
 
     # n-pass solution to setting a precise height.
     def get_dimensions(self, required_height):
+        sizes = self._face.available_sizes
+        try:
+            required_height = sizes[0].height
+            npasses = 1
+        except IndexError:
+            npasses = 10
+
         error = 0
         height = required_height
-        for npass in range(10):
+        for npass in range(npasses):
             height += error
-            self._face.set_pixel_sizes(0, height)
+            if npasses != 1:
+                self._face.set_pixel_sizes(0, height)
             max_descent = 0
 
             # For each character in the charset string we get the glyph
@@ -318,7 +326,6 @@ class Font(dict):
         self._max_ascent = int(max_ascent)
         self._max_descent = int(max_descent)
         return max_width
-
 
     def _glyph_for_character(self, char):
         # Let FreeType load the glyph for the given character and tell it to
@@ -361,7 +368,6 @@ class Font(dict):
             if args.verbose >= 1:
                 print()
                 outbuffer.display()
-
 
     def stream_char(self, char, hmap, reverse):
         outbuffer, _, _ = self[char]
@@ -415,6 +421,7 @@ class Font(dict):
             data += bytes((width,))
             data += bytearray(self.stream_char(char, hmap, reverse))
         return data
+
 
 # PYTHON FILE WRITING
 # The index only holds the start of data so can't read next_offset but must
@@ -638,7 +645,7 @@ if __name__ == "__main__":
     if not os.path.isfile(args.infile):
         quit("Font filename does not exist")
 
-    if not os.path.splitext(args.infile)[1].upper() in ('.TTF', '.OTF'):
+    if not os.path.splitext(args.infile)[1].upper() in ('.TTF', '.OTF', '.BDF'):
         quit("Font file should be a ttf or otf file.")
 
     if args.binary:
